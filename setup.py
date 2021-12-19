@@ -1,13 +1,20 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
-setup(name='datapeek',
+setup(
+  name='jsonbasedb',
   version='1.0.0',
-  description='A simple library for interacting with jsonbase',
-  url='https://github.com/BlitzJB/jsonbasedb',
   author='BlitzJB',
   author_email='blitz04.dev@gmail.com',
-  license='MIT',
-  packages=['datapeek'],
-  install_requires=[
-    'requests'
-  ])
+  description='A simple library for interacting with jsonbase',
+  packages=find_packages(),
+  install_requires=['requests'],
+  keywords=['python', 'json', 'database', 'jsonbase'],
+  classifiers=[
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Operating System :: Unix",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+  ]
+)
