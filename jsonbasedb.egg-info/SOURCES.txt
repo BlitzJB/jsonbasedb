@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+jsonbasedb/__init__.py
+jsonbasedb/db_models.py
+jsonbasedb/utils.py
+jsonbasedb.egg-info/PKG-INFO
+jsonbasedb.egg-info/SOURCES.txt
+jsonbasedb.egg-info/dependency_links.txt
+jsonbasedb.egg-info/requires.txt
+jsonbasedb.egg-info/top_level.txt
