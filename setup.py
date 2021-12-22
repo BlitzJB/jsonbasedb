@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
   name='jsonbasedb',
-  version='1.0.1',
+  version='1.1.1',
   author='BlitzJB',
   author_email='blitz04.dev@gmail.com',
   description='A simple library for interacting with jsonbase',

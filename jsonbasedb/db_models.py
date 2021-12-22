@@ -54,6 +54,21 @@ class Collection(object):
     url = f'https://jsonbase.com/{self.bucket_id}/{self.id}'
     response = requests.put(url, json=data, headers={'Content-Type': 'application/json'})
     return response.json()
+  
+  def append(self, data: list | dict) -> dict | list:
+    """
+    Note: Only works if this collection is a list. This is not the same as put. This will append the data to the collection.\n
+    Appends the supplied data to the collection in jsonbase\n
+    :param data: dict | list - data to append to the collection\n
+    
+    Returns\n
+    The data that was appended to the collection
+    """
+    url = f'https://jsonbase.com/{self.bucket_id}/{self.id}'
+    _data = self.get()
+    _data.append(data)
+    response = requests.post(url, json=_data, headers={'Content-Type': 'application/json'})
+    return _data
     
     
 class Bucket(object):
@@ -67,7 +82,7 @@ class Bucket(object):
   :collections: dict[str, Collection] - the collections in the bucket\n
   :url: str - url of bucket\n
   """
-  def __init__(self, CLIENT_SECRET, bucket_name, config_file='db.congif.json') -> None:
+  def __init__(self, CLIENT_SECRET, bucket_name, config_file='db.config.json') -> None:
     """
     Constructs a Bucket object\n
     :param CLIENT_SECRET: str - the client secret, this is used as the salt for hashing url endpoints\n
@@ -115,6 +130,18 @@ class Bucket(object):
     """
     collection = self.collections.get(collection_name)
     return collection.put(data)
+  
+  def append(self, collection_name: str, data: list | dict) -> dict | list:
+    """
+    Note: Only works if the collection is a list\n
+    Appends the supplied data to the collection\n
+    :param collection_name: str - the name of the collection\n
+    :param data: dict | list - the data to append to the collection\n
+    Returns\n
+    The data that was appended to the collection
+    """
+    collection = self.collections.get(collection_name)
+    return collection.append(data)
   
   def create_collection(self, collection_name: str) -> Collection:
     """
