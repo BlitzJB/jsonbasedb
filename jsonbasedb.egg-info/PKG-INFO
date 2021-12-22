@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: jsonbasedb
-Version: 1.0.1
+Version: 1.1.1
 Summary: A simple library for interacting with jsonbase
 Home-page: https://github.com/BlitzJB/jsonbasedb
 Author: BlitzJB
@@ -17,7 +17,6 @@ Classifier: Operating System :: Microsoft :: Windows
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
-# jsonbasedb
-A simple library for interacting with jsonbase.com
+ <img src="https://raw.githubusercontent.com/BlitzJB/jsonbasedb/main/docs/JsonBaseDB%20Banner%20Dark%20v2.png">
 
 
