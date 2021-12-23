@@ -69,7 +69,26 @@ class Collection(object):
     _data.append(data)
     response = requests.post(url, json=_data, headers={'Content-Type': 'application/json'})
     return _data
+  
+  def find(self, filter: dict) -> list | dict:
+    """
+    Note: Only works if this collection is a list.\n
+    Finds documents in the collection that match the given filter\n
+    :param filter: dict - key values to match\n
     
+    Returns\n
+    documents that match the given filter
+    """
+    _data = self.get()
+    _filtered = []
+    for doc in _data:
+      add = True
+      for k, v in filter.items():
+        if doc.get(k) != v:
+          add = False
+      if add:
+        _filtered.append(doc)
+    return _filtered
     
 class Bucket(object):
   """
@@ -142,6 +161,18 @@ class Bucket(object):
     """
     collection = self.collections.get(collection_name)
     return collection.append(data)
+  
+  def find(self, collection_name: str, filter: dict) -> list | dict:
+    """
+    Note: Only works if this collection is a list.\n
+    Finds documents in the collection that match the given filter\n
+    :param collection_name: str - the name of the collection\n
+    :param filter: dict - key values to match\n
+    Returns\n
+    documents that match the given filter
+    """
+    collection = self.collections.get(collection_name)
+    return collection.find(filter)
   
   def create_collection(self, collection_name: str) -> Collection:
     """
