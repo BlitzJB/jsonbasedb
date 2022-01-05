@@ -32,7 +32,7 @@ class Collection(object):
     """
     return f'<Collection {self.name} id:{self.id}>'
   
-  def get(self) -> dict | list:
+  def get(self):
     """
     Gets the collection data from jsonbase\n
     
@@ -43,7 +43,7 @@ class Collection(object):
     response = requests.get(url)
     return response.json()
   
-  def put(self, data: list | dict) -> dict | list:
+  def put(self, data):
     """
     Puts the supplied data into the collection in jsonbase\n
     :param data: dict | list - data to put into the collection\n
@@ -55,7 +55,7 @@ class Collection(object):
     response = requests.put(url, json=data, headers={'Content-Type': 'application/json'})
     return response.json()
   
-  def append(self, data: list | dict) -> dict | list:
+  def append(self, data):
     """
     Note: Only works if this collection is a list. This is not the same as put. This will append the data to the collection.\n
     Appends the supplied data to the collection in jsonbase\n
@@ -70,7 +70,7 @@ class Collection(object):
     response = requests.post(url, json=_data, headers={'Content-Type': 'application/json'})
     return _data
   
-  def find(self, filter: dict) -> list | dict:
+  def find(self, filter: dict):
     """
     Note: Only works if this collection is a list.\n
     Finds documents in the collection that match the given filter\n
@@ -130,7 +130,7 @@ class Bucket(object):
     json.dump(config, open(config_file, 'w'), indent=2)
     return config
     
-  def get(self, collection_name: str) -> dict | list:
+  def get(self, collection_name: str) :
     """
     Gets the collection data from jsonbase\n
     Alternative to Collection.get()\n
@@ -140,7 +140,7 @@ class Bucket(object):
     collection = self.collections.get(collection_name)
     return collection.get()
 
-  def put(self, collection_name: str, data: list | dict) -> dict | list:
+  def put(self, collection_name: str, data) :
     """
     Put the supplied data into the collection in jsonbase\n
     Alternative to Collection.put()\n
@@ -150,7 +150,7 @@ class Bucket(object):
     collection = self.collections.get(collection_name)
     return collection.put(data)
   
-  def append(self, collection_name: str, data: list | dict) -> dict | list:
+  def append(self, collection_name: str, data) :
     """
     Note: Only works if the collection is a list\n
     Appends the supplied data to the collection\n
@@ -162,7 +162,7 @@ class Bucket(object):
     collection = self.collections.get(collection_name)
     return collection.append(data)
   
-  def find(self, collection_name: str, filter: dict) -> list | dict:
+  def find(self, collection_name: str, filter: dict):
     """
     Note: Only works if this collection is a list.\n
     Finds documents in the collection that match the given filter\n
